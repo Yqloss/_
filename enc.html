@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<body>
+<h1>Encode URL</h1>
+<div>
+<input id="0.0"/>
+<button onclick="javascript:encode0();">Encode</button>
+</div>
+<input id="0.1" readonly="true"/>
+<h1>Encode Unicode</h1>
+<div>
+<input id="1.0"/>
+<button onclick="javascript:encode1();">Encode</button>
+</div>
+<input id="1.1" readonly="true"/>
+<h1>Encode String</h1>
+<div>
+<input id="2.0"/>
+<button onclick="javascript:encode2();">Encode</button>
+</div>
+<input id="2.1" readonly="true"/>
+<script>
+function B64toURL(str){
+str=str.split("A").join("AA");
+str=str.split("+").join("AB");
+str=str.split("/").join("AC");
+str=str.split("-").join("AD");
+str=str.split("=").join("AE");
+return str;
+}
+function encode0(){
+document.getElementById("0.1").value="https://yqloss.github.io/j?s="+B64toURL(btoa(document.getElementById("0.0").value));
+}
+function encode1(){
+document.getElementById("1.1").value=encodeURIComponent(document.getElementById("1.0").value);
+}
+function encode2(){
+document.getElementById("2.1").value="https://yqloss.github.io/j?s="+B64toURL("-"+btoa(encodeURIComponent(document.getElementById("2.0").value)));
+}
+</script>
+</body>
+</html>
